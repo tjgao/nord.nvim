@@ -190,6 +190,18 @@ end
 
 theme.loadTreeSitter = function()
 	-- TreeSitter highlight groups
+    _TSVariable = { fg = nord.nord4_gui, style = "bold" } -- Any variable name that does not have another highlight.
+    _TSVariableBuiltin = { fg = nord.nord4_gui, style = "bold" }
+    _TSBoolean = { fg = nord.nord9_gui, style = "bold" } -- For booleans.
+    _TSConstBuiltin = { fg = nord.nord7_gui, style = "bold" } -- For constant that are built in the language: `nil` in Lua.
+    _TSConstMacro = { fg = nord.nord7_gui, style = "bold" } -- For constants that are defined by macros: `NULL` in C.
+    if vim.g.nord_treesitter_bold == false then
+		_TSVariable = { fg = nord.nord4_gui } -- Any variable name that does not have another highlight.
+		_TSVariableBuiltin = { fg = nord.nord4_gui }
+		_TSBoolean = { fg = nord.nord9_gui } -- For booleans.
+		_TSConstBuiltin = { fg = nord.nord7_gui } -- For constant that are built in the language: `nil` in Lua.
+		_TSConstMacro = { fg = nord.nord7_gui } -- For constants that are defined by macros: `NULL` in C.
+    end
 
 	local treesitter = {
 		TSAnnotation = { fg = nord.nord12_gui }, -- For C++/Dart attributes, annotations thatcan be attached to the code to denote some kind of meta information.
@@ -199,11 +211,16 @@ theme.loadTreeSitter = function()
 		TSNumber = { fg = nord.nord15_gui }, -- For all number
 
 		TSAttribute = { fg = nord.nord15_gui }, -- (unstable) TODO: docs
-		TSVariable = { fg = nord.nord4_gui, style = "bold" }, -- Any variable name that does not have another highlight.
-		TSVariableBuiltin = { fg = nord.nord4_gui, style = "bold" },
-		TSBoolean = { fg = nord.nord9_gui, style = "bold" }, -- For booleans.
-		TSConstBuiltin = { fg = nord.nord7_gui, style = "bold" }, -- For constant that are built in the language: `nil` in Lua.
-		TSConstMacro = { fg = nord.nord7_gui, style = "bold" }, -- For constants that are defined by macros: `NULL` in C.
+		TSVariable = _TSVariable, -- Any variable name that does not have another highlight.
+		TSVariableBuiltin = _TSVariableBuiltin,
+		TSBoolean = _TSBoolean, -- For booleans.
+		TSConstBuiltin = _TSConstBuiltin, -- For constant that are built in the language: `nil` in Lua.
+		TSConstMacro = _TSConstMacro, -- For constants that are defined by macros: `NULL` in C.
+--		TSVariable = { fg = nord.nord4_gui, style = "bold" }, -- Any variable name that does not have another highlight.
+--		TSVariableBuiltin = { fg = nord.nord4_gui, style = "bold" },
+--		TSBoolean = { fg = nord.nord9_gui, style = "bold" }, -- For booleans.
+--		TSConstBuiltin = { fg = nord.nord7_gui, style = "bold" }, -- For constant that are built in the language: `nil` in Lua.
+--		TSConstMacro = { fg = nord.nord7_gui, style = "bold" }, -- For constants that are defined by macros: `NULL` in C.
 		TSError = { fg = nord.nord11_gui }, -- For syntax/parser errors.
 		TSException = { fg = nord.nord15_gui }, -- For exception related keywords.
 		TSFuncMacro = { fg = nord.nord7_gui }, -- For macro defined fuctions (calls and definitions): each `macro_rules` in Rust.
