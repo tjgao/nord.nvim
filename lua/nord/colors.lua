@@ -1,7 +1,7 @@
 local nord = (vim.o.background == "dark")
     and {
         --16 colors
-        nord0_gui = "#20242c",            -- nord0 in palette
+        nord0_gui = "#191919",            -- nord0 in palette
         -- nord0_gui = "#2E3440",            -- nord0 in palette
         nord1_gui = "#3B4252",            -- nord1 in palette
         -- nord1_gui = "#20242c",            -- nord1 in palette
